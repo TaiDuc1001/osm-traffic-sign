@@ -58,8 +58,8 @@ def main():
 if __name__ == "__main__":
     args = parse_args()
     if args.use_dev_api:
-        from dev_keys import *
+        from keys.dev_keys import *
     else:
-        from prod_keys import *
+        from keys.prod_keys import *
 
     main()

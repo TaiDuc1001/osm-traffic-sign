@@ -19,14 +19,20 @@ OSM-Traffic-Sign
 ```
 ## Files Description
 `keys/`
+
     `dev_keys.py`: Contains development API keys and endpoints.
     `prod_keys.py`: Contains production API keys and endpoints.
     `out.txt`: Stores the access token.
 
 `utils/`
+
     `get_access_token.py`: Script to obtain the access token.
     `upload.py`: Handles the upload of data points to the OpenStreetMap API.
     `utils.py`: Contains utility functions like creating changesets, nodes, and generating comments.
     
-`main.py`: Main script to parse arguments and execute the upload process.
-`.gitignore`: Specifies files and directories to be ignored by Git.
+`main.py`: The main script is used to parse arguments and execute the upload process.
+
+## Usage
+1. The `get_access_token.py` script can be run multiple times. 1 token can last for 1 hour.
+2. Go to the `keys/keys.py` and follow instructions.
+3. After redirecting to the **access token**, copy and paste to the terminal.

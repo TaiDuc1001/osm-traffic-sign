@@ -1,21 +1,26 @@
 import os
+import sys
+sys.path.append(os.path.join(os.path.dirname(__file__)))
 import argparse
 import json
+import subprocess
 
 def get_access_token(use_dev_api: bool) -> str:
-    command = f'''
-        python utils/get_access_token.py
-    '''
+    command = ['python', 'utils/get_access_token.py']
     if use_dev_api:
-        command += ' --use-dev-api'
+        command.append('--use-dev-api')
     return command
 
-def upload(lat: float, lon:float, name: str, use_dev_api: bool) -> str:
-    command = f'''
-        python utils/upload.py --lat {lat} --lon {lon} --name {name}
-    '''
+def upload(lat: float, lon:float, sign_type: str, use_dev_api: bool, speed_limit: int = None) -> str:
+    command = ['python', 'utils/upload.py']
+    command.extend(['--lat', str(lat)])
+    command.extend(['--lon', str(lon)])
+    command.extend(['--sign-type', sign_type])
+    if speed_limit:
+        command.extend(['--speed-limit', str(speed_limit)])
     if use_dev_api:
-        command += ' --use-dev-api'
+        command.append('--use-dev-api')
+    print(command)
     return command
 
 def parse_args():
@@ -31,10 +36,19 @@ def get_data_from_json(data_json):
 
 if __name__ == '__main__':
     args = parse_args()
-    os.system(get_access_token(args.use_dev_api))
+    subprocess.run(get_access_token(args.use_dev_api))
     data = get_data_from_json(args.data_json)
     for item in data:
         lat = item.get('lat')
         lon = item.get('lon')
-        name = item.get('name')
-        os.system(upload(lat, lon, name))
+        sign_type = item.get('sign_type')
+        speed_limit = item.get('speed_limit', None)
+        subprocess.run(
+            upload(
+                lat=lat, 
+                lon=lon, 
+                sign_type=sign_type, 
+                use_dev_api=args.use_dev_api, 
+                speed_limit=speed_limit
+            )
+        )

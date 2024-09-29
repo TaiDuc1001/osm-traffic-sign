@@ -1,5 +1,7 @@
 *_keys.py
 *.txt
+*.log
+*.json
 
 __pycache__/
 */__pycache__

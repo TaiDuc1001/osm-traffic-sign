@@ -4,7 +4,7 @@ import json
 
 def get_access_token(use_dev_api: bool) -> str:
     command = f'''
-        python get_access_token.py
+        python utils/get_access_token.py
     '''
     if use_dev_api:
         command += ' --use-dev-api'
@@ -12,7 +12,7 @@ def get_access_token(use_dev_api: bool) -> str:
 
 def upload(lat: float, lon:float, name: str, use_dev_api: bool) -> str:
     command = f'''
-        python upload.py --lat {lat} --lon {lon} --name {name}
+        python utils/upload.py --lat {lat} --lon {lon} --name {name}
     '''
     if use_dev_api:
         command += ' --use-dev-api'

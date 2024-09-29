@@ -1,5 +1,5 @@
 import argparse
-from utils import create_changeset, create_node, close_changeset, \
+from utils.utils import create_changeset, create_node, close_changeset, \
                     gen_comment
 
 def main(**kwargs):

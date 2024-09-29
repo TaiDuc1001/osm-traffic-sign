@@ -1,5 +1,4 @@
 import argparse
-from dev_keys import *
 from utils import create_changeset, create_node, close_changeset, \
                     gen_comment
 
@@ -40,6 +39,7 @@ def main(**kwargs):
 
 def parse_args():
     parser = argparse.ArgumentParser()
+    parser.add_argument('--use-dev-api', action='store_true', help='Use the development API')
     parser.add_argument('--lat', type=float, required=True)
     parser.add_argument('--lon', type=float, required=True)
     parser.add_argument('--name', type=str, required=True)
@@ -47,6 +47,11 @@ def parse_args():
 
 if __name__ == '__main__':
     args = parse_args()
+    if args.use_dev_api:
+        from dev_keys import *
+    else:
+        from prod_keys import *
+        
     headers = {
         'Authorization': f'Bearer {ACCESS_TOKEN}',
         'Content-Type': 'application/xml'

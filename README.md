@@ -5,11 +5,24 @@ This project interacts with the OpenStreetMap API to upload data points. It supp
 # Folder Structure
 ```
 OSM-Traffic-Sign
+├── data/
+│   ├── inference/
+│   │   ├── images/
+│   │   │   └── *.jpg
+│   │   └── meta/
+│   │       └── *.xml
+│   ├── train/
+│   │   ├── images/
+│   │   │   └── *.jpg
+│   │   └── labels/
+│   │       └── *.txt
 ├── keys/
 │   ├── dev_keys.py
 │   ├── out.txt
 │   └── prod_keys.py
 ├── utils/
+│   ├── train.py
+│   ├── inference.py
 │   ├── get_access_token.py
 │   ├── upload.py
 │   └── utils.py
@@ -18,6 +31,11 @@ OSM-Traffic-Sign
 └── README.md
 ```
 ## Files Description
+`data/`
+
+    `inference/`: Contains images and metadata for inference.
+    `train/`: Contains images and labels for training.
+    
 `keys/`
 
     `dev_keys.py`: Contains development API keys and endpoints.
